@@ -26,19 +26,19 @@ def calculate_score(cards):
 #step 13 - compare score func: takes player_score and computer_score as inputs
 def compare(player_score, computer_score):
     if player_score == computer_score:
-        return "Wow Draw!"
+        return "It's a draw! ♠️♦️ Hearts & Spades locked up!"
     elif computer_score == 0:
-        return "Lose, opponent has Blackjack!"
+        return "Opponent has Blackjack! You lose… 🃏"
     elif player_score == 0:
-        return "Blackjack! You win!!"
+        return "You got Blackjack! You win! 21♥"
     elif player_score > 21:
-        return "You went over. You lose.."
+        return "Opps, you went over 21… Bust! 🃏💥"
     elif computer_score > 21:
-        return "Opponent went over. You win..."
+        return "Opponent busted—You win! 🥳"
     elif player_score > computer_score:
-        return "You win!"
+        return "You win! Nice one."
     else:
-        return "You lose...LOL"
+        return "You lose. Better luck next time"
 
 def play_game():
     #logo goes here
@@ -52,24 +52,24 @@ def play_game():
     game_over = False
 
     for _ in range(2): #loop runs twice by calling deal_card()
-        # add new card to player cards
+        # add new card to player and computer cards
         player_card.append(deal_card())
         computer_card.append(deal_card())
 
 
-    #step 11 - while loop
+    #step 11 - while loop 
     while not game_over:
         #step 9
         player_score = calculate_score(player_card)
         computer_score = calculate_score(computer_card)
-        print(f"Your cards: {player_card}, current score: {player_score} ")
-        print(f"Computer's first cards: {computer_card[0]}")
+        print(f"Player cards: {player_card}, Player score: {player_score} ")
+        print(f"Computer cards: [{computer_card[0]}, ?]")
 
         #step 10
         if player_score == 0 or computer_score == 0 or player_score > 21:
             game_over = True
         else:
-            another_card = input("Another card? 'y' or 'n': ").lower()
+            another_card = input("Draw card? 'y' or 'n': ").lower()
             #if player wants more card then add card, else, game over.
             if another_card == "y":
                 player_card.append(deal_card())
@@ -84,11 +84,11 @@ def play_game():
 
     #step 13
 
-    print(f"\nPlayer final card: {player_card}, current score: {player_score}")
-    print(f"Computer cards: {computer_card}, computer score: {computer_score}")
+    print(f"\nPlayer final cards: {player_card}, Player score: {player_score}")
+    print(f"Computer final cards: {computer_card}, Computer score: {computer_score}")
     print(compare(player_score, computer_score))
 
 
-while input("Play Blackjack? 'y' or 'no': "):
-    print("\n"*20)
+while input("Play Blackjack? 'y' or 'n': ") == "y":
+    print("\n"*20) #to clear the screen
     play_game()
